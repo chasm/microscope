@@ -5,7 +5,11 @@ Router.configure
     Meteor.subscribe 'posts'
 
 Router.map ->
-  this.route 'postsList',
+  @.route 'postsList',
     path: '/'
+  @.route 'postPage',
+    path: '/posts/:_id'
+    data: ->
+      Posts.findOne @.params._id
 
 Router.onBeforeAction 'loading'
