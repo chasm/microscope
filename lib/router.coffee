@@ -5,26 +5,26 @@ Router.configure
     Meteor.subscribe 'posts'
 
 Router.map ->
-  @.route 'postsList',
+  @route 'postsList',
     path: '/'
-  @.route 'postPage',
+  @route 'postPage',
     path: '/posts/:_id'
     data: ->
       Posts.findOne @.params._id
-  @.route 'postEdit',
+  @route 'postEdit',
     path: '/posts/:_id/edit'
     data: -> Posts.findOne @.params._id
-  @.route 'postSubmit',
+  @route 'postSubmit',
     path: '/submit'
 
 requireLogin = (pause) ->
   unless Meteor.user()
     if Meteor.loggingIn()
-      @.render @.loadingTemplate
+      @render @.loadingTemplate
     else
-      @.render 'accessDenied'
+      @render 'accessDenied'
     pause()
 
 Router.onBeforeAction 'loading'
-Router.onBeforeAction requireLogin,
-  only: 'postSubmit'
+Router.onBeforeAction requireLogin, only: 'postSubmit'
+Router.onBeforeAction -> clearErrors()
