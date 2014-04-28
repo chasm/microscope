@@ -3,7 +3,7 @@ Router.configure
   loadingTemplate: 'loading'
   waitOn: -> [
     Meteor.subscribe 'posts'
-    Meteor.subscribe 'comments'
+    Meteor.subscribe 'notifications'
   ]
 
 Router.map ->
