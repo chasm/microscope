@@ -2,7 +2,7 @@ Template.postEdit.events
   'submit form': (e) ->
     e.preventDefault()
 
-    currentPostId = @._id
+    currentPostId = @_id
 
     postProperties =
       url: $(e.target).find('[name=url]').val()
@@ -12,7 +12,7 @@ Template.postEdit.events
       $set: postProperties,
       (error) ->
         if error
-          alert error.reason
+          Errors.throw(error.reason)
         else
           Router.go 'postPage',
             _id: currentPostId
@@ -21,6 +21,6 @@ Template.postEdit.events
     e.preventDefault()
 
     if  confirm("Delete this post?")
-      currentPostId = @._id
+      currentPostId = @_id
       Posts.remove currentPostId
       Router.go 'postsList'
