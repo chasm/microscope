@@ -1,8 +1,10 @@
 Router.configure
   layoutTemplate: 'layout'
   loadingTemplate: 'loading'
-  waitOn: ->
+  waitOn: -> [
     Meteor.subscribe 'posts'
+    Meteor.subscribe 'comments'
+  ]
 
 Router.map ->
   @route 'postsList',
