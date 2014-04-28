@@ -6,4 +6,4 @@ Meteor.publish 'comments', (postId) ->
     postId: postId
 
 Meteor.publish 'notifications', ->
-  Notifications.find()
+  Notifications.find( userId: @userId )
