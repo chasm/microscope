@@ -10,10 +10,10 @@ Template.notifications.helpers
 Template.notification.helpers
   notificationPostPath: ->
     Router.routes.postPage.path
-      _id: this.postId
+      _id: @postId
 
 Template.notification.events
   'click a': ->
-    Notifications.update this._id,
+    Notifications.update @_id,
       $set:
         read: true
