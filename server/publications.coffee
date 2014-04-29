@@ -3,6 +3,9 @@ Meteor.publish 'posts', (sort, limit) ->
     sort: sort
     limit: limit
 
+Meteor.publish 'singlePost', (id) ->
+  Posts.find(id)
+
 Meteor.publish 'comments', (postId) ->
   Comments.find
     postId: postId

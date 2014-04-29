@@ -29,12 +29,16 @@ Router.configure
 Router.map ->
   @route 'postPage',
     path: '/posts/:_id'
-    waitOn: ->
+    waitOn: -> [
+      Meteor.subscribe 'singlePost', @params._id
       Meteor.subscribe 'comments', @params._id
+    ]
     data: ->
       Posts.findOne @params._id
   @route 'postEdit',
     path: '/posts/:_id/edit'
+    waitOn: ->
+      Meteor.subscribe 'singlePost', @params._id
     data: -> Posts.findOne @params._id
   @route 'postSubmit',
     path: '/submit'
