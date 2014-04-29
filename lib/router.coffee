@@ -10,9 +10,16 @@
   waitOn: ->
     Meteor.subscribe 'posts',
       @findOptions()
-  data: ->
-    posts: Posts.find {},
+  posts: ->
+    Posts.find {},
       @findOptions()
+  data: ->
+    hasMore = @posts().count() == @limit()
+    nextPath = @route.path
+      postsLimit: @limit() + @increment
+
+    posts: @posts()
+    nextPath: if hasMore then nextPath else null
 
 Router.configure
   layoutTemplate: 'layout'
