@@ -38,6 +38,7 @@ Router.map ->
     data: -> Posts.findOne @params._id
   @route 'postSubmit',
     path: '/submit'
+    disableProgress: true
   @route 'postsList',
     path: '/:postsLimit?'
     controller: PostsListController
